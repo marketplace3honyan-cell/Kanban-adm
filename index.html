@@ -1081,5 +1081,40 @@ document.addEventListener('keydown', e => {
 // ─── START ────────────────────────────────────────────────────────────────────
 init();
 </script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBRjyL5oURg89CXgujyunv4dqH-PUYKYL4",
+  authDomain: "kanban-adm-fd391.firebaseapp.com",
+  projectId: "kanban-adm-fd391",
+  storageBucket: "kanban-adm-fd391.firebasestorage.app",
+  messagingSenderId: "879770440516",
+  appId: "1:879770440516:web:f476966dc2198972113d11",
+  measurementId: "G-6857C2B9H5"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Teste para salvar uma tarefa
+async function criarTarefa() {
+  await addDoc(collection(db, "tarefas"), {
+    titulo: "Primeira tarefa",
+    status: "A Fazer",
+    criadoEm: new Date()
+  });
+
+  alert("Tarefa salva!");
+}
+
+window.criarTarefa = criarTarefa;
+</script>
 </body>
 </html>
